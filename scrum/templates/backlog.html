@@ -1,0 +1,71 @@
+<div id="backlog_container">
+
+<form class="form-inline" style="margin-bottom:20px;">
+	<div class="form-group">
+		<button class="btn btn-primary" ng-click="modal_task()">Ajouter tâche</button>
+	</div>
+	<div class="form-group">
+		<select class="form-control" ng-model="run_action_name">
+			<option value="">Sélectionnez une action</option>
+			<option value="sprint_prompt">Associer à un sprint</option>
+			<option value="delete_confirm">Supprimer</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<div class="btn btn-default" ng-click="run_action(run_action_name)">OK</div>
+	</div>
+</form>
+
+	<ul id="backlog_list" ui-sortable="sortableOptions" ng-model="tasks">
+		<li ng-repeat="task in tasks">
+			<input type="checkbox" class="pull-right" ng-model="task.checked" />
+			<button class="pull-right" ng-click="delete_task(task)" style="margin-right:5px;"><i class="fa fa-trash"></i></button>
+			<button class="pull-right" ng-click="modal_task(task)" style="margin-right:5px;"><i class="fa fa-pencil"></i></button>
+			<span class="label label-success" style="margin-right:20px;">~{task.priority}~</span>
+			<span>~{task.name}~ ~{task.date_start | get_utc_datetime}~</span>
+			<p>~{task.description}~</p>
+		</li>
+	</ul>
+
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="modal_run_action_options">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Option</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+    		<form>
+				<div class="form-group">
+					<label for="">Sprint</label>
+					<div class="form-group">
+						<select ng-model="run_action_option.sprint" class="form-control">
+	                    {% for sprint in sprints %}
+							<option value="{{sprint.pk}}">{{sprint.name}}</option>
+	                    {% endfor %}
+	                    </select>
+					</div>
+				</div>
+				
+			</form>
+
+
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" ng-click="run_action('sprint')">Enregistrer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

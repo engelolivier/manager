@@ -1,0 +1,134 @@
+<div id="sprint_container">
+
+	<div class="form-inline" style="margin-bottom:20px;">
+		<div class="form-group">
+			<button class="btn btn-primary" ng-click="modal_new_sprint()">Ajouter sprint</button>
+			<button class="btn btn-primary" ng-click="modal_task()">Ajouter tâche</button>
+		</div>
+		
+	</div>
+
+	<div class="simpleDemo">
+		<div ng-repeat="(listName, list) in models.lists" class="col-md-4 ng-scope">
+			<div class="panel panel-info">
+		        <div class="panel-heading">
+		            <h3 class="panel-title ng-binding">
+		          <div ng-show="$index==0">A faire</div>
+		          <div ng-show="$index==1">En progression</div>
+		          <div ng-show="$index==2">Terminé</div>
+		            </h3>
+		        </div>
+		        <div class="panel-body ng-scope">
+					<ul 
+					dnd-list="list"
+					dnd-drop="task_dropped(event, index, item, $index)"
+					>
+					    <!-- The dnd-draggable directive makes an element draggable and will
+					         transfer the object that was assigned to it. If an element was
+					         dragged away, you have to remove it from the original list
+					         yourself using the dnd-moved attribute -->
+					    <li ng-repeat="item in list"
+				        dnd-draggable="item"
+				        dnd-moved="list.splice($index, 1)"
+				        dnd-effect-allowed="move"
+				        dnd-selected="models.selected = item"
+				        ng-class="{'selected': models.selected === item}"
+				        >
+				        
+				        <div class="btn btn-default btn-xs pull-right" ng-click="modal_task(item)"><i class="fa fa-pencil"></i></div>
+				        ~{item.label}~ 
+				    	</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<br style="clear:both;" />
+
+
+
+	<ul id="sprint_list" ng-model="sprints">
+		<li ng-repeat="sprint in sprints">
+			
+			<button class="pull-right" ng-click="delete_sprint(sprint)" style="margin-right:5px;"><i class="fa fa-trash"></i></button>
+			<button class="pull-right" ng-click="modal_update_sprint(sprint)" style="margin-right:5px;"><i class="fa fa-pencil"></i></button>
+			<span class="label label-success" style="margin-right:20px;">~{sprint.priority}~</span>
+			<span>~{sprint.name}~ ~{sprint.date_start | get_utc_date}~-~{sprint.date_end | get_utc_date}~</span>
+			<p>~{sprint.description}~</p>
+		</li>
+	</ul>
+
+</div>
+
+
+
+
+
+<div class="modal fade" id="modal_sprint">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edition tâche</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+    		<form>
+				<div class="form-group">
+					<label for="">Nom</label>
+					<div class="alert alert-danger" ng-show="sprint_selected.errors.name.length">
+						<span ng-repeat="error in sprint_selected.errors.name">~{error}~</span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="sprint_selected.name" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="">Date début</label>
+					<div class="alert alert-danger" ng-show="sprint_selected.errors.date_start.length">
+						<span ng-repeat="error in sprint_selected.errors.date_start">~{error}~</span>
+					</div>
+		            <div class="form-group">
+		                <div class="datetimepicker2 input-group date">
+		                    <input type="text" class="form-control" ng-model="sprint_selected.date_start" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+				</div>
+
+				<div class="form-group">
+					<label for="">Date fin</label>
+					<div class="alert alert-danger" ng-show="sprint_selected.errors.date_end.length">
+						<span ng-repeat="error in sprint_selected.errors.date_end">~{error}~</span>
+					</div>
+		            <div class="form-group">
+		                <div class="datetimepicker2 input-group date">
+		                    <input type="text" class="form-control" ng-model="sprint_selected.date_end" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+				</div>
+
+				
+			</form>
+
+
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" ng-click="record_sprint()">Enregistrer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

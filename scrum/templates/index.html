@@ -1,0 +1,204 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+
+<link rel="stylesheet" type="text/css" href="{% static "bower_components/bootstrap/dist/css/bootstrap.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "bower_components/pixeden-stroke-7-icon/pe-icon-7-stroke/dist/pe-icon-7-stroke.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "bower_components/font-awesome/css/font-awesome.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "bower_components/animate.css/animate.min.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "bower_components/alertify-js/build/css/alertify.min.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "bower_components/jquery-ui/themes/base/all.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "css/css.css" %}" />
+
+<script type="text/javascript" src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/jquery-ui/jquery-ui.min.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/bootstrap/dist/js/bootstrap.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/moment/min/moment-with-locales.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/angular/angular.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/angular-route/angular-route.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/angular-resource/angular-resource.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/jquery.cookie/jquery.cookie.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/alertify-js/build/alertify.min.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/angular-ui-sortable/sortable.min.js" %}"></script>
+<script type="text/javascript" src="{% static "bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/prod.js" %}"></script>
+
+</head>
+<body ng-app="app">
+
+
+<div id="header">
+
+	<div id="logo" class="light-version"><span>Gestion Projets</span></div>
+		
+
+	<nav role="navigation">
+		<div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+                        <i class="pe-7s-keypad"></i>
+                    </a>
+
+                    <div class="dropdown-menu hdropdown bigmenu animated flipInX">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <a href="projects.html">
+                                        <i class="pe pe-7s-portfolio text-info"></i>
+                                        <h5>Projects</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="mailbox.html">
+                                        <i class="pe pe-7s-mail text-warning"></i>
+                                        <h5>Email</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="contacts.html">
+                                        <i class="pe pe-7s-users text-success"></i>
+                                        <h5>Contacts</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="forum.html">
+                                        <i class="pe pe-7s-comment text-info"></i>
+                                        <h5>Forum</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="analytics.html">
+                                        <i class="pe pe-7s-graph1 text-danger"></i>
+                                        <h5>Analytics</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="file_manager.html">
+                                        <i class="pe pe-7s-box1 text-success"></i>
+                                        <h5>Files</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown" aria-expanded="false">
+                        <i class="pe-7s-mail"></i>
+                        <span class="label label-success">4</span>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="sidebar" class="right-sidebar-toggle">
+                        <i class="pe-7s-upload pe-7s-news-paper"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="/logout">
+                        <i class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+{% include 'menu.html' %}
+
+
+<div id="wrapper">
+	<div class="content" data-ng-view>
+		<div class="row">
+			
+			{% for task in tasks %}
+			<div class="col-lg-3 animated-panel zoomIn" style="animation-delay: 0.{{forloop.counter}}s; -webkit-animation-delay: 0.{{forloop.counter}}s;margin-top:20px;">
+			        <div class="hpanel hgreen contact-panel">
+			            <div class="panel-body">
+			                <span class="label label-success pull-right">NEW</span>
+			              
+			                <h3><a href="">{{task.name}}</a></h3>
+			                <div class="text-muted font-bold m-b-xs">Strasbourg, Alsace</div>
+			                <p>
+			                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+			                </p>
+			            </div>
+			            <div class="panel-footer contact-footer">
+			                <div class="row">
+			                    <div class="col-md-4 border-right animated-panel zoomIn" style="animation-delay: 0.2s; -webkit-animation-delay: 0.2s;"> <div class="contact-stat"><span>Projets en cours: </span> <strong>200</strong></div> </div>
+			                    <div class="col-md-4 border-right animated-panel zoomIn" style="animation-delay: 0.2s; -webkit-animation-delay: 0.2s;"> <div class="contact-stat"><span>Messages: </span> <strong>300</strong></div> </div>
+			                    <div class="col-md-4 animated-panel zoomIn" style="animation-delay: 0.3s; -webkit-animation-delay: 0.3s;"> <div class="contact-stat"><span>Views: </span> <strong>400</strong></div> </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			{% endfor %}
+
+
+		</div>
+	</div>
+</div>
+
+
+
+{% include "modal/task.html" %}
+
+
+</body>
+</html>

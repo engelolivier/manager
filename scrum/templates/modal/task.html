@@ -1,0 +1,138 @@
+<div class="modal fade" id="modal_task_edit" ng-controller="ModalTaskController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edition tâche</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+    		<form>
+				<div class="form-group">
+					<label for="">Nom</label>
+					<div class="alert alert-danger" ng-show="task.errors.name.length">
+						<span ng-repeat="error in task.errors.name">~{error}~</span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="task.name" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="">Priorité</label>
+					<div class="alert alert-danger" ng-show="task.errors.priority.length">
+						<span ng-repeat="error in task.errors.priority">~{error}~</span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="task.priority" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="">Statut</label>
+					<div class="alert alert-danger" ng-show="task.errors.status.length">
+						<span ng-repeat="error in task.errors.status">~{error}~</span>
+					</div>
+					<div class="form-group">
+						<select class="form-control" ng-model="task.status">
+						{% for k, status in TASK_STATUS %}
+							<option value="{{k}}">{{status}}</option>
+	                    {% endfor %}
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="">Date début</label>
+					<div class="alert alert-danger" ng-show="task.errors.date_start.length">
+						<span ng-repeat="error in task.errors.date_start">~{error}~</span>
+					</div>
+		            <div class="form-group">
+		                <div class="datetimepicker2 input-group date">
+		                    <input type="text" class="form-control" ng-model="task.date_start" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+				</div>
+
+				<div class="form-group">
+					<label for="">Date fin</label>
+					<div class="alert alert-danger" ng-show="task.errors.date_end.length">
+						<span ng-repeat="error in task.errors.date_end">~{error}~</span>
+					</div>
+		            <div class="form-group">
+		                <div class="datetimepicker2 input-group date">
+		                    <input type="text" class="form-control" ng-model="task.date_end" />
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		            </div>
+				</div>
+
+				<div class="form-group">
+					<label for="">Employé</label>
+					<div class="alert alert-danger" ng-show="task.errors.employees.length">
+						<span ng-repeat="error in task.errors.employees">~{error}~</span>
+					</div>
+		            <div class="form-group">
+		                <div class="input-group">
+		                    <!-- <select 
+		                    multiple="true" type="text" class="form-control" 
+		                    ng-model="task.employees" 
+		                    ng-options="item.firstname+' '+item.lastname for item in employees">
+		                    </select>
+		                    -->
+							<!--
+		                    <select ng-model="task.employees" multiple="true" class="form-control">
+		                    {% for employee in employees %}
+								<option value="{{employee.pk}}">{{employee.firstname}} {{employee.lastname}}</option>
+		                    {% endfor %}
+		                    </select>
+		                    -->
+							<select ng-model="task.employees" multiple="true" class="form-control"
+ 							ng-options="item.firstname+' '+item.lastname for item in employees track by item.id">
+							>
+		                    </select>
+
+		                </div>
+		            </div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="">Sprint</label>
+					<div class="alert alert-danger" ng-show="task.errors.sprint.length">
+						<span ng-repeat="error in task.errors.sprint">~{error}~</span>
+					</div>
+
+					<div class="alert alert-danger" ng-show="task.errors.sprint.non_field_errors.length">
+						<span ng-repeat="error in task.errors.sprint.non_field_errors">~{error}~</span>
+					</div>
+		            <div class="form-group">
+		                <div class="input-group">
+		                <!--
+		                    <select ng-model="task.sprint" class="form-control">
+		                    {% for sprint in sprints %}
+								<option value="{{sprint.pk}}">{{sprint.name}}</option>
+		                    {% endfor %}
+		                    </select>
+		                -->
+		                <select ng-model="task.sprint" class="form-control"
+ 							ng-options="item.name for item in sprints track by item.id">
+		                    </select>
+		                </div>
+		            </div>
+				</div>
+			</form>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" ng-click="record_task()">Enregistrer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
